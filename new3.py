@@ -6,7 +6,7 @@ produto_nome = input('Qual produto você deseja: ')
 response = requests.get(f'https://lista.mercadolivre.com.br/{produto_nome}')
 
 site = BeautifulSoup(response.text, 'html.parser')
-#class="andes-card andes-card--flat andes-card--default ui-search-result ui-search-result--core andes-card--padding-default"
+
 
 produtos = site.findAll('div', attrs={'class': 'andes-card andes-card--flat andes-card--default ui-search-result ui-search-result--core andes-card--padding-default'})
 for produto in produtos:
@@ -17,9 +17,6 @@ for produto in produtos:
     real = produto.find('span',attrs={'class': 'price-tag-fraction'})
     centavos = produto.find('span',attrs={'class': 'price-tag-cents'})
 
-    #print(site.prettify())
-
-    # print(produto.prettify())
 
     print('Título do produto: ', titulo.text)
     print('Link do produto: ', link['href'])
